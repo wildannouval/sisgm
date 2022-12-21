@@ -1,11 +1,23 @@
 <?php
 include "../koneksi.php";
 if(isset($_POST['submit'])){
-  $nama_customer = $_POST['nama_customer'];
-  $keluhan = $_POST['keluhan'];
-  $solusi = $_POST['solusi'];
+  $tgl_pengiriman = $_POST['tgl_pengiriman'];
+  $no_invoice = $_POST['no_invoice'];
+  $nama_penerima = $_POST['nama_penerima'];
+  $almt_penerima = $_POST['almt_penerima'];
+  $no_hp_penerima = $_POST['no_hp_penerima'];
+  $nama_barang = $_POST['nama_barang'];
+  $qty_barang = $_POST['qty_barang'];
+  $total = $_POST['total'];
+  $keterangan = $_POST['keterangan'];
+  $eqpt_pengiriman = $_POST['eqpt_pengiriman'];
+  $terms = $_POST['terms'];
+  $nama_sopir = $_POST['nama_sopir'];
+  $no_hp_sopir = $_POST['no_hp_sopir'];
+  $status = $_POST['status'];
+  $lokasi_terkini = $_POST['lokasi_terkini'];
   
-  $query = mysqli_query($conn,"INSERT INTO pelayanan (nama_customer,keluhan,solusi) VALUES ('$nama_customer','$keluhan','$solusi')");
+  $query = mysqli_query($conn,"INSERT INTO pengiriman (tgl_pengiriman,no_invoice,nama_penerima,almt_penerima,no_hp_penerima,nama_barang,qty_barang,total,keterangan,eqpt_pengiriman,terms,nama_sopir,no_hp_sopir,status,lokasi_terkini) VALUES ('$tgl_pengiriman','$no_invoice','$nama_penerima','$almt_penerima','$no_hp_penerima','$nama_barang','$qty_barang','$total','$keterangan','$eqpt_pengiriman','$terms','$nama_sopir','$no_hp_sopir','$status','$lokasi_terkini')");
   if($query){
     echo "<script>alert('Data berhasil di tambah');</script>"; 
     header("Location: ../tabledata/table_pelayanan.php");
@@ -136,11 +148,11 @@ if(isset($_POST['submit'])){
             </div>
           </div>
           <div class="form-group">
-            <label class="col-md-4 control-label">Eqpt pengiriman</label>
+            <label class="col-md-4 control-label">Eqpt Pengiriman</label>
             <div class="col-md-4 inputGroupContainer">
               <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                <input name="eqpt_pengiriman" placeholder="eqpt pengiriman" class="form-control" type="text">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                <textarea name="eqpt_pengiriman" placeholder="eqpt pengiriman" class="form-control" rows="3"></textarea>
               </div>
             </div>
           </div>

@@ -1,23 +1,21 @@
 <?php
 include "../koneksi.php";
 if(isset($_POST['submit'])){
-  $nama_customer = $_POST['nama_customer'];
-  $keluhan = $_POST['keluhan'];
-  $solusi = $_POST['solusi'];
+  $nama_perusahaan = $_POST['nama_perusahaan'];
+  $no_tlp_perusahaan = $_POST['no_tlp_perusahaan'];
+  $alamat_perusahaan = $_POST['alamat_perusahaan'];
+  $laporan = $_POST['laporan'];
   
-  $query = mysqli_query($conn,"UPDATE pelayanan SET nama_customer='$nama_customer',keluhan='$keluhan',solusi='$solusi'");
+  $query = mysqli_query($conn,"INSERT INTO perusahaan (nama_perusahaan,no_tlp_perusahaan,alamat_perusahaan,laporan) VALUES ('$nama_perusahaan','$no_tlp_perusahaan','$alamat_perusahaan','$laporan')");
   if($query){
     echo "<script>alert('Data berhasil di tambah');</script>"; 
-    header("Location: ../tabledata/table_pelayanan.php");
+    header("Location: ../tabledata/table_perusahaan.php");
   }else{
     echo "<script>alert('Data gagal di tambah');</script>"; 
-    header("Location: pelayanan_form.php");
+    header("Location: perusahaan_form.php");
   }
 }
 
-$id_pelayanan = $_GET['id_pelayanan'];
-$query=mysqli_query($conn,"SELECT * FROM pelayanan WHERE id_pelayanan='$id_pelayanan'");
-$data = mysqli_fetch_assoc($query);
 ?>
 
 <html>
@@ -41,37 +39,46 @@ $data = mysqli_fetch_assoc($query);
           <!-- Form Name -->
           <legend>
             <center>
-              <h2><b>Form Pelayanan</b></h2>
+              <h2><b>Form Perusahaan</b></h2>
             </center>
           </legend><br>
 
           <!-- Text input-->
 
           <div class="form-group">
-            <label class="col-md-4 control-label">Nama Customer</label>
+            <label class="col-md-4 control-label">Nama Perusahaan</label>
             <div class="col-md-4 inputGroupContainer">
               <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                <input name="nama_customer" placeholder="Nama Lengkap" class="form-control" type="text" value="<?php echo $data['nama_customer'];?>">
+                <input name="nama_perusahaan" placeholder="Nama Perusahaan" class="form-control" type="text">
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label">No Tlp Perusahaan</label>
+            <div class="col-md-4 inputGroupContainer">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <input name="no_tlp_perusahaan" placeholder="no tlp perusahaan" class="form-control" type="text">
               </div>
             </div>
           </div>
 
           <div class="form-group">
-            <label class="col-md-4 control-label">Keluhan</label>
+            <label class="col-md-4 control-label">Alamat Perusahaan</label>
             <div class="col-md-4 inputGroupContainer">
               <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                <textarea name="keluhan" placeholder="Keluhan" class="form-control" rows="3"><?php echo $data['keluhan'];?></textarea>
+                <textarea name="alamat_perusahaan" placeholder="alamat perusahaan" class="form-control" rows="3"></textarea>
               </div>
             </div>
           </div>
           <div class="form-group">
-            <label class="col-md-4 control-label">Solusi</label>
+            <label class="col-md-4 control-label">laporan</label>
             <div class="col-md-4 inputGroupContainer">
               <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                <textarea name="solusi" placeholder="Solusi" class="form-control" rows="3"><?php echo $data['solusi'];?></textarea>
+                <textarea name="laporan" placeholder="laporan" class="form-control" rows="3"></textarea>
               </div>
             </div>
           </div>

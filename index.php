@@ -137,6 +137,15 @@ session_start();
                       <a href='destroy.php' class='dropdown-item'>logout</a>
                       </div>
                 </div>";
+              }else if($role == "supplier"){
+                echo "
+              <div class='nav-item dropdown'>
+				          <a href='#' data-toggle='dropdown' class='nav-item nav-link dropdown-toggle'><span>$text_login</span><i class='fa fa-user' aria-hidden='true'></i></a>
+				            <div class='dropdown-menu'>					
+					          <a href='dashboardpage/dashboardsupplier.php' class='dropdown-item'>Dashboard</a>
+					          <a href='destroy.php' class='dropdown-item'>logout</a>
+                    </div>
+              </div>";
               }
       
             }else{

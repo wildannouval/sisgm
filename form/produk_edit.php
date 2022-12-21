@@ -1,23 +1,38 @@
 <?php
 include "../koneksi.php";
-if(isset($_POST['submut'])){
-  $nama = $_POST['nama'];
-  $alamat = $_POST['alamat'];
-  $no_hp = $_POST['no_hp'];
-  $email = $_POST['email'];
-  $password = $_POST['password'];
-  $role = $_POST['role'];
-  
-  $query = mysqli_query($conn,"INSERT INTO user(nama,alamat,no_hp,email,password,role) VALUES ('$nama','$alamat','$no_hp','$email','$password','$role')");
-  if($query){
-    echo "<script>alert('Data berhasil di tambah');</script>"; 
-    header("Location: ../tabledata/table_pengguna.php");
+if(isset($_POST['submit'])){
+  $nama_produk = $_POST['nama_produk'];
+  $deskripsi = $_POST['deskripsi'];
+  $harga = $_POST['harga'];
+  $stock = $_POST['stock'];
+  $ekstensi_diperbolehkan	= array('png','jpg');
+  $nama_file = $_FILES['gambar_produk']['name'];
+	$x = explode('.', $nama_file);
+	$ekstensi = strtolower(end($x));
+	$ukuran	= $_FILES['gambar_produk']['size'];
+	$file_tmp = $_FILES['gambar_produk']['tmp_name'];
+
+  if(in_array($ekstensi, $ekstensi_diperbolehkan) === true){
+    if($ukuran < 1044070){			
+      move_uploaded_file($file_tmp, 'file/'.$nama_file);
+      $query = mysqli_query($conn,"UPDATE produk SET nama_produk='$nama_produk',deskripsi='$deskripsi',harga='$harga',stock='$stock',gambar_produk='$nama_file'");
+      if($query){
+        echo "<script>alert('File Berhasil di Di Edit');</script>"; 
+        header("Location: ../tabledata/table_produk.php");
+      }else{
+        echo 'GAGAL MENGUPLOAD GAMBAR';
+      }
+    }else{
+      echo 'UKURAN FILE TERLALU BESAR';
+    }
   }else{
-    echo "<script>alert('Data gagal di tambah');</script>"; 
-    header("Location: pengguna_form.php");
+    echo 'EKSTENSI FILE YANG DI UPLOAD TIDAK DI PERBOLEHKAN';
   }
 }
 
+$id_produk=$_GET['id_produk'];
+$query=mysqli_query($conn,"SELECT * FROM produk WHERE id_produk='$id_produk'");
+$data=mysqli_fetch_assoc($query);
 ?>
 
 <html>
@@ -35,84 +50,65 @@ if(isset($_POST['submut'])){
   <body>
     <div class="container">
 
-      <form class="well form-horizontal" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+      <form class="well form-horizontal" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" enctype="multipart/form-data">
         <fieldset>
 
           <!-- Form Name -->
           <legend>
             <center>
-              <h2><b>Form Pengguna</b></h2>
+              <h2><b>Form Produk</b></h2>
             </center>
           </legend><br>
 
           <!-- Text input-->
 
           <div class="form-group">
-            <label class="col-md-4 control-label">Nama</label>
+            <label class="col-md-4 control-label">Nama Produk</label>
             <div class="col-md-4 inputGroupContainer">
               <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                <input name="nama" placeholder="Nama Lengkap" class="form-control" type="text">
+                <input name="nama_produk" placeholder="Nama Produk" class="form-control" type="text" value="<?php echo $data['nama_produk'];?>">
               </div>
             </div>
           </div>
 
           <div class="form-group">
-            <label class="col-md-4 control-label">Alamat</label>
+            <label class="col-md-4 control-label">Deskripsi</label>
             <div class="col-md-4 inputGroupContainer">
               <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                <textarea name="alamat" placeholder="Alamat" class="form-control" rows="3"></textarea>
+                <textarea name="deskripsi" placeholder="Deskripsi Produk" class="form-control" rows="3"><?php echo $data['deskripsi'];?></textarea>
               </div>
             </div>
           </div>
 
           <div class="form-group">
-            <label class="col-md-4 control-label">No handphone</label>
+            <label class="col-md-4 control-label">Harga Produk</label>
             <div class="col-md-4 inputGroupContainer">
               <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-                <input name="no_hp" placeholder="+62" class="form-control" type="text">
+                <input name="harga" placeholder="Harga Produk" class="form-control" type="text" value="<?php echo $data['harga'] ?>">
               </div>
             </div>
           </div>
 
           <div class="form-group">
-            <label class="col-md-4 control-label">Email</label>
+            <label class="col-md-4 control-label">Stock Produk</label>
             <div class="col-md-4 inputGroupContainer">
               <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                <input name="email" placeholder="placeholder@email.com" class="form-control" type="email">
+                <input name="stock" placeholder="Stock Produk" class="form-control" type="text" value="<?php echo $data['stock']; ?>">
               </div>
             </div>
           </div>
 
           <div class="form-group">
-            <label class="col-md-4 control-label">Password</label>
+            <label class="col-md-4 control-label">Gambar Produk</label>
             <div class="col-md-4 inputGroupContainer">
               <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                <input name="password" placeholder="*****" class="form-control" type="text">
-              </div>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="col-md-4 control-label">Role</label>
-            <div class="col-md-4 selectContainer">
-              <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-tags"></i></span>
-                <select name="role" class="form-control selectpicker">
-                  <option value="">Select Role</option>
-                  <option>Owner</option>
-                  <option>Admin</option>
-                  <option>Suppliew</option>
-                  <option>Marketing</option>
-                  <option>Treasury</option>
-                  <option>Sopir</option>
-                  <option>Customer Service</option>
-                  <option>Customer</option>
-                </select>
+                <img src="<?php echo 'file/'.$data['gambar_produk'];?>" width="50">
+                <input name="gambar_produk" placeholder="Gambar Produk" class="form-control" type="file">
               </div>
             </div>
           </div>

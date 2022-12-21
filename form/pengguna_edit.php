@@ -8,7 +8,7 @@ if(isset($_POST['submut'])){
   $password = $_POST['password'];
   $role = $_POST['role'];
   
-  $query = mysqli_query($conn,"INSERT INTO user(nama,alamat,no_hp,email,password,role) VALUES ('$nama','$alamat','$no_hp','$email','$password','$role')");
+  $query = mysqli_query($conn,"UPDATE user SET nama='$nama',alamat='$alamat',no_hp='$no_hp',email='$email',password='$password',role='$role'");
   if($query){
     echo "<script>alert('Data berhasil di tambah');</script>"; 
     header("Location: ../tabledata/table_pengguna.php");
@@ -16,8 +16,13 @@ if(isset($_POST['submut'])){
     echo "<script>alert('Data gagal di tambah');</script>"; 
     header("Location: pengguna_form.php");
   }
+
+  
 }
 
+  $id_pengguna=$_GET['id_pengguna'];
+  $query=mysqli_query($conn,"SELECT * FROM user WHERE id='$id_pengguna'");
+  $data = mysqli_fetch_assoc($query);
 ?>
 
 <html>
@@ -52,7 +57,7 @@ if(isset($_POST['submut'])){
             <div class="col-md-4 inputGroupContainer">
               <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                <input name="nama" placeholder="Nama Lengkap" class="form-control" type="text">
+                <input name="nama" placeholder="Nama Lengkap" class="form-control" type="text" value="<?php echo $data['nama'];?>">
               </div>
             </div>
           </div>
@@ -62,7 +67,7 @@ if(isset($_POST['submut'])){
             <div class="col-md-4 inputGroupContainer">
               <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                <textarea name="alamat" placeholder="Alamat" class="form-control" rows="3"></textarea>
+                <textarea name="alamat" placeholder="Alamat" class="form-control" rows="3"><?php echo $data['alamat'];?></textarea>
               </div>
             </div>
           </div>
@@ -72,7 +77,7 @@ if(isset($_POST['submut'])){
             <div class="col-md-4 inputGroupContainer">
               <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-                <input name="no_hp" placeholder="+62" class="form-control" type="text">
+                <input name="no_hp" placeholder="+62" class="form-control" type="text" value="<?php echo $data['no_hp'];?>">
               </div>
             </div>
           </div>
@@ -82,7 +87,7 @@ if(isset($_POST['submut'])){
             <div class="col-md-4 inputGroupContainer">
               <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                <input name="email" placeholder="placeholder@email.com" class="form-control" type="email">
+                <input name="email" placeholder="placeholder@email.com" class="form-control" type="email" value="<?php echo $data['email'];?>">
               </div>
             </div>
           </div>
@@ -92,7 +97,7 @@ if(isset($_POST['submut'])){
             <div class="col-md-4 inputGroupContainer">
               <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                <input name="password" placeholder="*****" class="form-control" type="text">
+                <input name="password" placeholder="*****" class="form-control" type="text" value="<?php echo $data['password']; ?>">
               </div>
             </div>
           </div>
@@ -103,7 +108,7 @@ if(isset($_POST['submut'])){
               <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-tags"></i></span>
                 <select name="role" class="form-control selectpicker">
-                  <option value="">Select Role</option>
+                  <option value="<?php echo $data['role'] ?>">Select Role</option>
                   <option>Owner</option>
                   <option>Admin</option>
                   <option>Suppliew</option>

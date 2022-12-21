@@ -118,28 +118,36 @@ session_start();
       </div>
       <div class="row">
             <?php
-
-            ?>
-        <div class="col-md-6 col-lg-4">
-          <div class="box">
-            <div class="img-box">
-              <img src="images/f1.png" alt="">
-            </div>
-            <div class="detail-box">
+              $query="SELECT * FROM produk";
+              $result=mysqli_query($conn,$query);
+              while($row = mysqli_fetch_array($result)){
+                $harga_rp = number_format($row['harga'],0,",",".");
+                echo "
+              <div class='col-md-6 col-lg-4'>
+              <div class='box'>
+              <div class='img-box'>
+                <img src='form/file/$row[gambar_produk]'>
+              </div>
+              <div class='detail-box'>
               <h5>
-                brown Chair Design
+                $row[nama_produk]
               </h5>
-              <div class="price_box">
-                <h6 class="price_heading">
-                  <span>$</span> 100.00
+              <div class='price_box'>
+                <h6 class='price_heading'>
+                  <span>Rp</span> $harga_rp
                 </h6>
-                <a href="">
+                <a href=''>
                   Buy Now
                 </a>
               </div>
             </div>
           </div>
         </div>
+              ";
+              }
+              
+            ?>
+        
       </div>
     </div>
   </section>

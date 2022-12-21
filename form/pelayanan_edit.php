@@ -1,23 +1,23 @@
 <?php
 include "../koneksi.php";
-if(isset($_POST['submut'])){
-  $nama = $_POST['nama'];
-  $alamat = $_POST['alamat'];
-  $no_hp = $_POST['no_hp'];
-  $email = $_POST['email'];
-  $password = $_POST['password'];
-  $role = $_POST['role'];
+if(isset($_POST['submit'])){
+  $nama_customer = $_POST['nama_customer'];
+  $keluhan = $_POST['keluhan'];
+  $solusi = $_POST['solusi'];
   
-  $query = mysqli_query($conn,"INSERT INTO user(nama,alamat,no_hp,email,password,role) VALUES ('$nama','$alamat','$no_hp','$email','$password','$role')");
+  $query = mysqli_query($conn,"UPDATE pelayanan SET nama_customer='$nama_customer',keluhan='$keluhan',solusi='$solusi'");
   if($query){
     echo "<script>alert('Data berhasil di tambah');</script>"; 
-    header("Location: ../tabledata/table_pengguna.php");
+    header("Location: ../tabledata/table_pelayanan.php");
   }else{
     echo "<script>alert('Data gagal di tambah');</script>"; 
-    header("Location: pengguna_form.php");
+    header("Location: pelayanan_form.php");
   }
 }
 
+$id_pelayanan = $_GET['id_pelayanan'];
+$query=mysqli_query($conn,"SELECT * FROM pelayanan WHERE id_pelayanan='$id_pelayanan'");
+$data = mysqli_fetch_assoc($query);
 ?>
 
 <html>
@@ -41,78 +41,37 @@ if(isset($_POST['submut'])){
           <!-- Form Name -->
           <legend>
             <center>
-              <h2><b>Form Pengguna</b></h2>
+              <h2><b>Form Pelayanan</b></h2>
             </center>
           </legend><br>
 
           <!-- Text input-->
 
           <div class="form-group">
-            <label class="col-md-4 control-label">Nama</label>
+            <label class="col-md-4 control-label">Nama Customer</label>
             <div class="col-md-4 inputGroupContainer">
               <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                <input name="nama" placeholder="Nama Lengkap" class="form-control" type="text">
+                <input name="nama_customer" placeholder="Nama Lengkap" class="form-control" type="text" value="<?php echo $data['nama_customer']?>">
               </div>
             </div>
           </div>
 
           <div class="form-group">
-            <label class="col-md-4 control-label">Alamat</label>
+            <label class="col-md-4 control-label">Keluhan</label>
             <div class="col-md-4 inputGroupContainer">
               <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                <textarea name="alamat" placeholder="Alamat" class="form-control" rows="3"></textarea>
+                <textarea name="keluhan" placeholder="Keluhan" class="form-control" rows="3"><?php echo $data['keluhan']; ?></textarea>
               </div>
             </div>
           </div>
-
           <div class="form-group">
-            <label class="col-md-4 control-label">No handphone</label>
+            <label class="col-md-4 control-label">Solusi</label>
             <div class="col-md-4 inputGroupContainer">
               <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-                <input name="no_hp" placeholder="+62" class="form-control" type="text">
-              </div>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="col-md-4 control-label">Email</label>
-            <div class="col-md-4 inputGroupContainer">
-              <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                <input name="email" placeholder="placeholder@email.com" class="form-control" type="email">
-              </div>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="col-md-4 control-label">Password</label>
-            <div class="col-md-4 inputGroupContainer">
-              <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                <input name="password" placeholder="*****" class="form-control" type="text">
-              </div>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="col-md-4 control-label">Role</label>
-            <div class="col-md-4 selectContainer">
-              <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-tags"></i></span>
-                <select name="role" class="form-control selectpicker">
-                  <option value="">Select Role</option>
-                  <option>Owner</option>
-                  <option>Admin</option>
-                  <option>Suppliew</option>
-                  <option>Marketing</option>
-                  <option>Treasury</option>
-                  <option>Sopir</option>
-                  <option>Customer Service</option>
-                  <option>Customer</option>
-                </select>
+                <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                <textarea name="solusi" placeholder="Solusi" class="form-control" rows="3"><?php echo $data['solusi']; ?></textarea>
               </div>
             </div>
           </div>

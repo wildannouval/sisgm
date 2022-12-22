@@ -75,14 +75,82 @@ session_start();
           <div class="quote_btn-container">
           <?php
             if(isset($_SESSION['email'])){
-              $text_login = $_SESSION['email'];
-              echo "
+              $text_login = $_SESSION['nama'];
+              $role = $_SESSION['role'];
+              if($role == "owner"){
+                echo "
               <div class='nav-item dropdown'>
 				          <a href='#' data-toggle='dropdown' class='nav-item nav-link dropdown-toggle'><span>$text_login</span><i class='fa fa-user' aria-hidden='true'></i></a>
 				            <div class='dropdown-menu'>					
+					          <a href='dashboardpage/dashboardowner.php' class='dropdown-item'>Dashboard</a>
 					          <a href='destroy.php' class='dropdown-item'>logout</a>
                     </div>
               </div>";
+              }else if($role == "admin"){
+                echo "
+              <div class='nav-item dropdown'>
+				          <a href='#' data-toggle='dropdown' class='nav-item nav-link dropdown-toggle'><span>$text_login</span><i class='fa fa-user' aria-hidden='true'></i></a>
+				            <div class='dropdown-menu'>					
+					          <a href='dashboardpage/dashboardadmin.php' class='dropdown-item'>Dashboard</a>
+					          <a href='destroy.php' class='dropdown-item'>logout</a>
+                    </div>
+              </div>";
+              }else if($role == "marketing"){
+                echo "
+              <div class='nav-item dropdown'>
+				          <a href='#' data-toggle='dropdown' class='nav-item nav-link dropdown-toggle'><span>$text_login</span><i class='fa fa-user' aria-hidden='true'></i></a>
+				            <div class='dropdown-menu'>					
+					          <a href='dashboardpage/dashboardmarketing.php' class='dropdown-item'>Dashboard</a>
+					          <a href='destroy.php' class='dropdown-item'>logout</a>
+                    </div>
+              </div>";
+              }else if($role == "treasury"){
+                echo "
+              <div class='nav-item dropdown'>
+				          <a href='#' data-toggle='dropdown' class='nav-item nav-link dropdown-toggle'><span>$text_login</span><i class='fa fa-user' aria-hidden='true'></i></a>
+				            <div class='dropdown-menu'>					
+					          <a href='dashboardpage/dashboardtreasury.php' class='dropdown-item'>Dashboard</a>
+					          <a href='destroy.php' class='dropdown-item'>logout</a>
+                    </div>
+              </div>";
+              }else if($role == "sopir"){
+                echo "
+              <div class='nav-item dropdown'>
+				          <a href='#' data-toggle='dropdown' class='nav-item nav-link dropdown-toggle'><span>$text_login</span><i class='fa fa-user' aria-hidden='true'></i></a>
+				            <div class='dropdown-menu'>					
+					          <a href='dashboardpage/dashboardsopir.php' class='dropdown-item'>Dashboard</a>
+					          <a href='destroy.php' class='dropdown-item'>logout</a>
+                    </div>
+              </div>";
+              }else if($role == "cs"){
+                echo "
+              <div class='nav-item dropdown'>
+				          <a href='#' data-toggle='dropdown' class='nav-item nav-link dropdown-toggle'><span>$text_login</span><i class='fa fa-user' aria-hidden='true'></i></a>
+				            <div class='dropdown-menu'>					
+					          <a href='dashboardpage/dashboardcs.php' class='dropdown-item'>Dashboard</a>
+					          <a href='destroy.php' class='dropdown-item'>logout</a>
+                    </div>
+              </div>";
+              }else if($role == "customer"){
+                echo "
+                <div class='nav-item dropdown'>
+                    <a href='#' data-toggle='dropdown' class='nav-item nav-link dropdown-toggle'><span>$text_login</span><i class='fa fa-user' aria-hidden='true'></i></a>
+                      <div class='dropdown-menu'>
+                      <a href='pengirimanproduk.php' class='dropdown-item'>pengiriman produk</a>			
+                      <a href='destroy.php' class='dropdown-item'>logout</a>
+                      </div>
+                </div>";
+              }else if($role == "supplier"){
+                echo "
+              <div class='nav-item dropdown'>
+				          <a href='#' data-toggle='dropdown' class='nav-item nav-link dropdown-toggle'><span>$text_login</span><i class='fa fa-user' aria-hidden='true'></i></a>
+				            <div class='dropdown-menu'>					
+					          <a href='dashboardpage/dashboardsupplier.php' class='dropdown-item'>Dashboard</a>
+					          <a href='destroy.php' class='dropdown-item'>logout</a>
+                    </div>
+              </div>";
+              }
+      
             }else{
               $text_login = "Login";
               echo "<a href='login.php'>
@@ -123,11 +191,18 @@ session_start();
               </h2>
             </div>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti dolorem eum consequuntur ipsam repellat dolor soluta aliquid laborum, eius odit consectetur vel quasi in quidem, eveniet ab est corporis tempore.
+              VISI:<br>
+              Menjadi Showroom Mobil terbaik di Indonesia dengan kualitas pelayanan paling memuaskan bagi pelanggan<br>
             </p>
-            <a href="">
-              Read More
-            </a>
+            <p>
+              MISI:<br>
+            <ol>
+              <li>Memberikan produk dan service terbaik terhadap pelanggan.</li>
+              <li>Memberikan pelayanan prima guna mewujudkan kepuasan konsumen.</li>
+              <li>Menciptakan sumber daya yang professional dengan menciptakan lingkungan kerja yang nyaman dan menyenangkan sehingga mampu memberikan pelayanan yang terbaik bagi pelanggan.</li>
+              <li>Memberikan service dengan kualitas pelayanan yang maksimal dan memuaskan.</li>
+            </ol>
+            </p>
           </div>
         </div>
       </div>
@@ -140,12 +215,12 @@ session_start();
   <!-- info section -->
   <section class="info_section long_section">
 
-    <div class="container">
+  <div class="container">
       <div class="contact_nav">
-        <a href="">
+        <a href="<?php echo 'https://api.whatsapp.com/send?phone=62895336889774';?>">
           <i class="fa fa-phone" aria-hidden="true"></i>
           <span>
-            Call : +62123456789
+            Call : +62895336889774
           </span>
         </a>
         <a href="">
@@ -154,86 +229,13 @@ session_start();
             Email : gopalshowroom@gmail.com
           </span>
         </a>
-        <a href="">
+        <a href="https://www.google.com/maps/search/?api=1&query=-7.432478%2C109.339545">
           <i class="fa fa-map-marker" aria-hidden="true"></i>
           <span>
             Location
           </span>
         </a>
       </div>
-
-      <!-- <div class="info_top ">
-        <div class="row ">
-          <div class="col-sm-6 col-md-4 col-lg-3">
-            <div class="info_links">
-              <h4>
-                QUICK LINKS
-              </h4>
-              <div class="info_links_menu">
-                <a class="" href="index.php">Home <span class="sr-only">(current)</span></a>
-                <a class="" href="about.html"> About</a>
-                <a class="" href="furniture.html">Furniture</a>
-                <a class="" href="blog.html">Blog</a>
-                <a class="" href="contact.html">Contact Us</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-md-4 col-lg-3 mx-auto">
-            <div class="info_post">
-              <h5>
-                INSTAGRAM FEEDS
-              </h5>
-              <div class="post_box">
-                <div class="img-box">
-                  <img src="images/f1.png" alt="">
-                </div>
-                <div class="img-box">
-                  <img src="images/f2.png" alt="">
-                </div>
-                <div class="img-box">
-                  <img src="images/f3.png" alt="">
-                </div>
-                <div class="img-box">
-                  <img src="images/f4.png" alt="">
-                </div>
-                <div class="img-box">
-                  <img src="images/f5.png" alt="">
-                </div>
-                <div class="img-box">
-                  <img src="images/f6.png" alt="">
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="info_form">
-              <h4>
-                SIGN UP TO OUR NEWSLETTER
-              </h4>
-              <form action="">
-                <input type="text" placeholder="Enter Your Email" />
-                <button type="submit">
-                  Subscribe
-                </button>
-              </form>
-              <div class="social_box">
-                <a href="">
-                  <i class="fa fa-facebook" aria-hidden="true"></i>
-                </a>
-                <a href="">
-                  <i class="fa fa-twitter" aria-hidden="true"></i>
-                </a>
-                <a href="">
-                  <i class="fa fa-linkedin" aria-hidden="true"></i>
-                </a>
-                <a href="">
-                  <i class="fa fa-instagram" aria-hidden="true"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> -->
     </div>
   </section>
   <!-- end info_section -->

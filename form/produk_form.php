@@ -21,6 +21,7 @@ if(isset($_POST['submit'])){
         header("Location: ../tabledata/table_produk.php");
       }else{
         echo 'GAGAL MENGUPLOAD GAMBAR';
+        header("Location: produk_form.php");
       }
     }else{
       echo 'UKURAN FILE TERLALU BESAR';

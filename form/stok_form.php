@@ -8,10 +8,10 @@ if(isset($_POST['submit'])){
   $query = mysqli_query($conn,"INSERT INTO stok (id_produk,nama_produk,stock) VALUES ('$id_produk','$nama_produk','$stock')");
   if($query){
     echo "<script>alert('Data berhasil di tambah');</script>"; 
-    header("Location: ../tabledata/table_pelayanan.php");
+    header("Location: ../tabledata/table_stok.php");
   }else{
     echo "<script>alert('Data gagal di tambah');</script>"; 
-    header("Location: pelayanan_form.php");
+    header("Location: stok_form.php");
   }
 }
 

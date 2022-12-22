@@ -29,6 +29,7 @@ session_start();
                         <h1 class="mt-4">Table Pelayanan</h1>
                         <ol class="breadcrumb mb-4">
                             <a href="../form/pelayanan_form.php" class="btn btn-info">Add Pelayanan</a>
+                            <a href="../form/exportpelayanan.php" class="btn btn-success">Export Laporan</a>
                         </ol>
                         
                         <!-- <div class="row">

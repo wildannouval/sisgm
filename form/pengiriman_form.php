@@ -20,10 +20,10 @@ if(isset($_POST['submit'])){
   $query = mysqli_query($conn,"INSERT INTO pengiriman (tgl_pengiriman,no_invoice,nama_penerima,almt_penerima,no_hp_penerima,nama_barang,qty_barang,total,keterangan,eqpt_pengiriman,terms,nama_sopir,no_hp_sopir,status,lokasi_terkini) VALUES ('$tgl_pengiriman','$no_invoice','$nama_penerima','$almt_penerima','$no_hp_penerima','$nama_barang','$qty_barang','$total','$keterangan','$eqpt_pengiriman','$terms','$nama_sopir','$no_hp_sopir','$status','$lokasi_terkini')");
   if($query){
     echo "<script>alert('Data berhasil di tambah');</script>"; 
-    header("Location: ../tabledata/table_pelayanan.php");
+    header("Location: ../tabledata/table_pengiriman.php");
   }else{
     echo "<script>alert('Data gagal di tambah');</script>"; 
-    header("Location: pelayanan_form.php");
+    header("Location: pengiriman_form.php");
   }
 }
 

@@ -22,7 +22,7 @@ session_start();
         <div id="layoutSidenav">
             <?php
             include "../sidenav_nav.php";
-            // include "../sidenav_content.php"
+            include "../sidenav_content.php"
             ?>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>

@@ -29,6 +29,7 @@ session_start();
                         <h1 class="mt-4">Table Produk</h1>
                         <ol class="breadcrumb mb-4">
                             <a href="../form/produk_form.php" class="btn btn-info">Add Produk</a>
+                            <a href="../form/exportproduk.php" class="btn btn-success">Export Laporan</a>
                         </ol>
                         
                         <!-- <div class="row">

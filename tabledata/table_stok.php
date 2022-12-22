@@ -29,6 +29,7 @@ session_start();
                         <h1 class="mt-4">Table Stok</h1>
                         <ol class="breadcrumb mb-4">
                             <a href="../form/stok_form.php" class="btn btn-info">Add Stok</a>
+                            <a href="../form/exportstok.php" class="btn btn-success">Exoprt Laporan</a>
                         </ol>
                         
                         <!-- <div class="row">

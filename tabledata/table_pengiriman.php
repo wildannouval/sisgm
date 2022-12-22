@@ -1,6 +1,7 @@
 <?php
 include "../koneksi.php";
 session_start();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,7 +30,11 @@ session_start();
                         <h1 class="mt-4">Table Pengiriman</h1>
                         <ol class="breadcrumb mb-4">
                             <a href="../form/pengiriman_form.php" class="btn btn-info">Add Pengiriman</a>
+                            <a href="../form/exportpengirimanall.php" class="btn btn-success">Export Semua Laporan</a>
                         </ol>
+                        <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="POST">
+		                    <input type="submit" name="export" value="Export">
+	                    </form>
                         
                         <!-- <div class="row">
                             <div class="col-xl-3 col-md-6">
@@ -89,6 +94,7 @@ session_start();
                                             <th>qty_barang</th>
                                             <th>total</th>
                                             <th>keterangan</th>
+                                            <th>eqpt_pengiriman</th>
                                             <th>terms</th>
                                             <th>nama_sopir</th>
                                             <th>no_hp_sopir</th>
@@ -110,6 +116,7 @@ session_start();
                                             <th>qty_barang</th>
                                             <th>total</th>
                                             <th>keterangan</th>
+                                            <th>eqpt_pengiriman</th>
                                             <th>terms</th>
                                             <th>nama_sopir</th>
                                             <th>no_hp_sopir</th>
@@ -136,6 +143,7 @@ session_start();
                                             <td>$row[qty_barang]</td>
                                             <td>$row[total]</td>
                                             <td>$row[keterangan]</td>
+                                            <td>$row[eqpt_pengiriman]</td>
                                             <td>$row[terms]</td>
                                             <td>$row[nama_sopir]</td>
                                             <td>$row[no_hp_sopir]</td>
@@ -144,6 +152,7 @@ session_start();
                                             <td>
                                             <a href='../form/pengiriman_edit.php?no_pengiriman=$row[no_pengiriman]' class='btn btn-warning'>Edit</a>
                                             <a href='../form/pengiriman_delete.php?no_pengiriman=$row[no_pengiriman]' class='btn btn-danger'>Delete</a>
+                                            <a href='../form/exportpdfpengiriman.php?no_pengiriman=$row[no_pengiriman]' class='btn btn-success'>Export</a>
                                             </td>
                                         </tr>
                                         ";

@@ -10,7 +10,7 @@ if(isset($_POST['submit'])){
   $harga_produk = $_POST['harga_produk'];
   $total = $_POST['total'];
   
-  $query = mysqli_query($conn,"UPDATE transaksi SET tgl_invoice='$tgl_invoice',nama_customer='$nama_customer',no_hp_customer='$no_hp_customer',id_produk='$id_produk',nama_produk='$nama_produk',qty_produk='$qty_produk',harga_produk='$harga_produk',total='$total'");
+  $query = mysqli_query($conn,"UPDATE transaksi SET tgl_invoice='$tgl_invoice',nama_customer='$nama_customer',no_hp_customer='$no_hp_customer',id_produk='$id_produk',nama_produk='$nama_produk',qty_produk='$qty_produk',harga_produk='$harga_produk',total='$total' WHERE no_invoice='$no_invoice'");
   if($query){
     echo "<script>alert('Data berhasil di tambah');</script>"; 
     header("Location: ../tabledata/table_transaksi.php");

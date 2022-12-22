@@ -46,7 +46,7 @@
                                     }else if($_SESSION['role'] == "marketing"){
                                         echo '
                                         <a class="nav-link" href="../tabledata/table_produk.php">Table Produk</a>
-                                        <a class="nav-link" href="../tabledata/table_transaksi.php">Table Transaksi</a>
+                                        <a class="nav-link" href="../tabledata/table_pemasaran.php">Table Pemasaran</a>
                                         ';
                                     }else if($_SESSION['role'] == "treasury"){
                                         echo '

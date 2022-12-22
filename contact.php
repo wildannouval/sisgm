@@ -181,6 +181,13 @@ session_start();
               <h2>
                 Contact Us
               </h2>
+              <h4>
+                Silahkan untuk menghubungi kontak dibawah ini :
+              </h4>
+              <ul>
+                <li>Call : +62895336889700</li>
+                <li>Email : gopalshowroom@gmail.com</li>
+              </ul>
             </div>
       </div>
     </div>
@@ -194,7 +201,7 @@ session_start();
         <a href="<?php echo 'https://api.whatsapp.com/send?phone=62895336889774';?>">
           <i class="fa fa-phone" aria-hidden="true"></i>
           <span>
-            Call : +62895336889774
+            Call : +62895336889700
           </span>
         </a>
         <a href="">

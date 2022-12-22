@@ -6,7 +6,7 @@ if(isset($_POST['submit'])){
   $harga = $_POST['harga'];
   $promo = $_POST['promo'];
   
-  $query = mysqli_query($conn,"UPDATE pemasaran SET id_produk='$id_produk',deskripsi='$deskripsi',harga='$harga',promo='$promo'");
+  $query = mysqli_query($conn,"UPDATE pemasaran SET id_produk='$id_produk',deskripsi='$deskripsi',harga='$harga',promo='$promo' WHERE id_pemasaran='$id_pemasaran'");
   if($query){
     echo "<script>alert('Data berhasil di tambah');</script>"; 
     header("Location: ../tabledata/table_pemasaran.php");

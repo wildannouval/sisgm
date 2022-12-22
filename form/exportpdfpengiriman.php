@@ -134,25 +134,6 @@
     $pdf->SetFont('Times',"",9);
     $pdf->Cell(4,1,$cell[0][14],'LBTR',0,'C');
 
-    // $pdf->Ln();
-    // $pdf->SetFont('Times',"",9);
-   
-    //    for($j=0;$j<$i;$j++)
-    // { 
-              
-    //     $pdf->Cell(1,1,$j+1,'LBTR',0,'C');
-      
-    //     $pdf->Cell(3,1,$cell[$j][3],'LBTR',0,'C');
-    //     $pdf->Cell(3,1,$cell[$j][5],'LBTR',0,'C');
-    //     $pdf->Cell(3,1,$cell[$j][8],'LBTR',0,'C');
-    //     $pdf->Cell(4,1,$cell[$j][9],'LBTR',0,'C');
-    //     $pdf->Cell(4,1,$cell[$j][10],'LBTR',0,'C');
-    //     $pdf->Cell(4,1,$cell[$j][11],'LBTR',0,'C');
-    //     $pdf->Cell(4,1,$cell[$j][12],'LBTR',0,'C');
-    //     $pdf->Cell(4,1,$cell[$j][14],'LBTR',0,'C');
-
-    //        $pdf->Ln();
-    // }
    
     //menampilkan output berupa halaman PDF
     $pdf->Output();

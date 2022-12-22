@@ -17,7 +17,7 @@ if(isset($_POST['submit'])){
   $status = $_POST['status'];
   $lokasi_terkini = $_POST['lokasi_terkini'];
   
-  $query = mysqli_query($conn,"UPDATE pengiriman SET tgl_pengiriman='$tgl_pengiriman',no_invoice='$no_invoice',nama_penerima='$nama_penerima',almt_penerima='$almt_penerima',no_hp_penerima='$no_hp_penerima',nama_barang='$nama_barang',qty_barang='$qty_barang',total='$total',keterangan='$keterangan',eqpt_pengiriman='$eqpt_pengiriman',terms='$terms',nama_sopir='$nama_sopir',no_hp_sopir='$no_hp_sopir',status='$status',lokasi_terkini='$lokasi_terkini'");
+  $query = mysqli_query($conn,"UPDATE pengiriman SET tgl_pengiriman='$tgl_pengiriman',no_invoice='$no_invoice',nama_penerima='$nama_penerima',almt_penerima='$almt_penerima',no_hp_penerima='$no_hp_penerima',nama_barang='$nama_barang',qty_barang='$qty_barang',total='$total',keterangan='$keterangan',eqpt_pengiriman='$eqpt_pengiriman',terms='$terms',nama_sopir='$nama_sopir',no_hp_sopir='$no_hp_sopir',status='$status',lokasi_terkini='$lokasi_terkini' WHERE no_pengiriman='$no_pengiriman'");
   if($query){
     echo "<script>alert('Data berhasil di tambah');</script>"; 
     header("Location: ../tabledata/table_pelayanan.php");

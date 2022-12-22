@@ -5,7 +5,7 @@ if(isset($_POST['submit'])){
   $keluhan = $_POST['keluhan'];
   $solusi = $_POST['solusi'];
   
-  $query = mysqli_query($conn,"UPDATE pelayanan SET nama_customer='$nama_customer',keluhan='$keluhan',solusi='$solusi'");
+  $query = mysqli_query($conn,"UPDATE pelayanan SET nama_customer='$nama_customer',keluhan='$keluhan',solusi='$solusi' WHERE id_pelayanan='$id_pelayanan'");
   if($query){
     echo "<script>alert('Data berhasil di tambah');</script>"; 
     header("Location: ../tabledata/table_pelayanan.php");

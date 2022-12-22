@@ -38,7 +38,7 @@ $data=mysqli_fetch_assoc($query);
 
 <!--    color palettes       -->
 <div class="container mx-auto">
-    <h3>Data yang dipilih:</h3>
+    <h3>Produk yang dipilih:</h3>
     <table width="100%">
         <tr>
             <td>ID Produk</td>
@@ -231,7 +231,13 @@ $data=mysqli_fetch_assoc($query);
         </tr>
         <tr>
             <td><p>Silahkan hubungi / chat nomor dibawah ini :</p></td>
-            <td colspan="2"><a href="<?php echo 'https://api.whatsapp.com/send?phone=62895336889774&text=nama_customer%3A'.$_SESSION['nama'].'%2CId_barang%3A'.$data['id_produk'].'%2C%3A'.$data['nama_produk'].'%2CApakah%20Ready%3F'?>" class="btn btn-info">Contact For Buy</a></td>
+            <?php
+            if(is_null($_SESSION['nama'])){
+                echo "<td colspan='2'><a href='../login.php' class='btn btn-warning'>Login Required</a></td>";
+            }else{
+                echo "<td colspan='2'><a href='https://api.whatsapp.com/send?phone=62895336889774&text=nama_customer%3A".$_SESSION['nama']."%2CId_barang%3A".$data['id_produk']."%2C%3A".$data['nama_produk']."%2CApakah%20Ready%3F' class='btn btn-info'>Contact For Buy</a></td>";
+            }
+            ?>
         </tr>
     </table>
     

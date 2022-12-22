@@ -1,5 +1,6 @@
 <?php
 include "../koneksi.php";
+$id_produk=$_GET['id_produk'];
 if(isset($_POST['submit'])){
   $nama_produk = $_POST['nama_produk'];
   $deskripsi = $_POST['deskripsi'];
@@ -15,7 +16,7 @@ if(isset($_POST['submit'])){
   if(in_array($ekstensi, $ekstensi_diperbolehkan) === true){
     if($ukuran < 1044070){			
       move_uploaded_file($file_tmp, 'file/'.$nama_file);
-      $query = mysqli_query($conn,"UPDATE produk SET nama_produk='$nama_produk',deskripsi='$deskripsi',harga='$harga',stock='$stock',gambar_produk='$nama_file'");
+      $query = mysqli_query($conn,"UPDATE produk SET nama_produk='$nama_produk',deskripsi='$deskripsi',harga='$harga',stock='$stock',gambar_produk='$nama_file' WHERE id_produk='$id_produk'");
       if($query){
         echo "<script>alert('File Berhasil di Di Edit');</script>"; 
         header("Location: ../tabledata/table_produk.php");
@@ -87,7 +88,7 @@ $data=mysqli_fetch_assoc($query);
             <div class="col-md-4 inputGroupContainer">
               <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-                <input name="harga" placeholder="Harga Produk" class="form-control" type="text" value="<?php echo $data['harga'] ?>">
+                <input name="harga" placeholder="Harga Produk" class="form-control" type="text" value="<?php echo $data['harga']; ?>">
               </div>
             </div>
           </div>

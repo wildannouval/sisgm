@@ -8,7 +8,7 @@ if(isset($_POST['submut'])){
   $password = $_POST['password'];
   $role = $_POST['role'];
   
-  $query = mysqli_query($conn,"UPDATE user SET nama='$nama',alamat='$alamat',no_hp='$no_hp',email='$email',password='$password',role='$role'");
+  $query = mysqli_query($conn,"UPDATE user SET nama='$nama',alamat='$alamat',no_hp='$no_hp',email='$email',password='$password',role='$role' WHERE id_pengguna='$id_pengguna'");
   if($query){
     echo "<script>alert('Data berhasil di tambah');</script>"; 
     header("Location: ../tabledata/table_pengguna.php");

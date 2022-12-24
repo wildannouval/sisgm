@@ -220,7 +220,7 @@ session_start();
         <a href="<?php echo 'https://api.whatsapp.com/send?phone=62895336889774';?>">
           <i class="fa fa-phone" aria-hidden="true"></i>
           <span>
-            Call : +62895336889774
+            Call : +62895336889700
           </span>
         </a>
         <a href="">

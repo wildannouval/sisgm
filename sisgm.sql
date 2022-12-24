@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 22, 2022 at 10:24 AM
+-- Generation Time: Dec 24, 2022 at 08:49 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -116,7 +116,7 @@ CREATE TABLE `perusahaan` (
 --
 
 INSERT INTO `perusahaan` (`id_perusahaan`, `nama_perusahaan`, `no_tlp_perusahaan`, `alamat_perusahaan`, `laporan`) VALUES
-(1, 'SISGM', 62281698789, 'Purbalingga', 'Lap');
+(1, 'Showroom Gopal Motor ', 62895336889700, 'Purbalingga', 'Lap');
 
 -- --------------------------------------------------------
 
